@@ -1,0 +1,36 @@
+services:
+  react-app:
+    build:
+      context: ./react-app
+    network_mode: "host"
+    volumes:
+      - ./react-app:/app
+      - /app/node_modules
+    command: npm start
+
+  graphql-server:
+    build:
+      context: ./graphql-graphene
+    network_mode: "host"
+    volumes:
+      - ./graphql-graphene:/var/task
+    environment:
+      - AWS_ACCESS_KEY_ID=DUMMYIDEXAMPLE
+      - AWS_SECRET_ACCESS_KEY=DUMMYEXAMPLEKEY
+      - REGION=us-east-1
+
+  dynamodb-local:
+    build:
+      context: ./dynamodb-local
+    network_mode: "host"
+    working_dir: /home/dynamodblocal
+    environment:
+      - AWS_ACCESS_KEY_ID=DUMMYIDEXAMPLE
+      - AWS_SECRET_ACCESS_KEY=DUMMYEXAMPLEKEY
+      - REGION=us-east-1
+    volumes:
+      - ./dynamodb-local/dynamodb-data:/home/dynamodblocal/data
+    command: "-jar DynamoDBLocal.jar -sharedDb -dbPath ./data"
+
+volumes:
+  dynamodb-data:

@@ -1,0 +1,28 @@
+.column {
+  margin: 8px;
+  border: 1px solid lightgrey;
+  border-radius: 2px;
+  width: 220px;
+  display: flex;
+  flex-direction: column;
+}
+
+.column h3 {
+  padding: 8px;
+}
+
+.task-list {
+  padding: 8px;
+  transition: background-color 0.2s ease;
+  background-color: white;
+  flex-grow: 1;
+  min-height: 100px;
+}
+
+.task {
+  border: 1px solid lightgrey;
+  border-radius: 2px;
+  padding: 8px;
+  margin-bottom: 8px;
+  background-color: white;
+}
